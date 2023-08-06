@@ -1,0 +1,52 @@
+:root {
+	--backgroundColor: #121212;
+	--fontColor: #f9f9f9;
+}
+
+:root[color-mode="dark"] {
+	--backgroundColor: #121212;
+	--fontColor: #f9f9f9;
+}
+
+:root[color-mode="light"] {
+	--backgroundColor: #f9f9f9;
+	--fontColor: #080808;
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+	background-color: var(--backgroundColor);
+	color: var(--fontColor);
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: var(--fontColor);
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 16px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #25252662; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #2d2d2dcb; 
+}

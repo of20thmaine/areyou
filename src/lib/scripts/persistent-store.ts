@@ -33,3 +33,11 @@ export async function SetMessage(message: string) {
 export async function GetMessage() {
     return store.get("message");
 }
+
+export async function SetTimerOpts(timerOpts: TimerOption[]) {
+    return store.set("timer-opts", timerOpts).then(() => store.save());
+}
+
+export async function GetTimerOpts() {
+    return store.get("timer-opts");
+}

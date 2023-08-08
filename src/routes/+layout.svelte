@@ -4,10 +4,8 @@
     import { onMount } from "svelte";
     import { appWindow } from "@tauri-apps/api/window";
     import { timer } from "$lib/scripts/timer";
-    import { ColorMode, BackgroundColor, FontColor, Message } from "$lib/scripts/runtime-store";
-    import { GetColorMode, GetBackgroundColor, GetFontColor, GetMessage } from "$lib/scripts/persistent-store";
-
-    timer(60000);
+    import { ColorMode, BackgroundColor, FontColor, Message, TimerOpts, CurrentTimerOpt } from "$lib/scripts/runtime-store";
+    import { GetColorMode, GetBackgroundColor, GetFontColor, GetMessage, GetTimerOpts } from "$lib/scripts/persistent-store";
 
     onMount(() => {
         // Set color mode to user setting if exists, else system setting.
@@ -73,6 +71,17 @@
 
     GetMessage().then((value) => {
         if (value !== null) Message.set(value as string);
+    });
+
+    GetTimerOpts().then((value) => {
+        if (value !== null) TimerOpts.set(value as TimerOption[]);
+        for (let opt of $TimerOpts) {
+            if (opt.isDefault) {
+                CurrentTimerOpt.set(opt);
+                return;
+            }
+        }
+        CurrentTimerOpt.set({time: 1, isDefault: true});
     });
 </script>
 

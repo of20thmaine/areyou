@@ -3,3 +3,12 @@ declare namespace svelteHTML {
         'on:outclick'?: (event: any) => any;
     }
 }
+
+interface Timer {
+    cancel: () => void;
+}
+
+interface TimerOption {
+    time: number;
+    isDefault: boolean;
+}

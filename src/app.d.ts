@@ -4,10 +4,6 @@ declare namespace svelteHTML {
     }
 }
 
-interface Timer {
-    cancel: () => void;
-}
-
 interface TimerOption {
     time: number;
     isDefault: boolean;

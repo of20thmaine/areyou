@@ -19,6 +19,7 @@
         }
         $TimerOpts.splice(idx, 1);
         $TimerOpts = $TimerOpts;
+        SetTimerOpts($TimerOpts);
     }
 
     function createOption() {
@@ -48,6 +49,7 @@
 
         $TimerOpts.splice(placeIdx, 0, {time: time, isDefault: false});
         $TimerOpts = $TimerOpts;
+        SetTimerOpts($TimerOpts);
         newTime = errorStr = "";
         showAddTime = false;
     }
@@ -70,6 +72,7 @@
             }
         }
         $TimerOpts = $TimerOpts;
+        SetTimerOpts($TimerOpts);
     }
 </script>
 

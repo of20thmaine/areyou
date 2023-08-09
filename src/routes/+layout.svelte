@@ -3,7 +3,7 @@
     import "bootstrap-icons/font/bootstrap-icons.css";
     import { onMount } from "svelte";
     import { appWindow } from "@tauri-apps/api/window";
-    import { timer } from "$lib/scripts/timer";
+    import Timer from "$lib/components/Timer.svelte";
     import { ColorMode, BackgroundColor, FontColor, Message, TimerOpts, CurrentTimerOpt } from "$lib/scripts/runtime-store";
     import { GetColorMode, GetBackgroundColor, GetFontColor, GetMessage, GetTimerOpts } from "$lib/scripts/persistent-store";
 
@@ -62,7 +62,6 @@
             BackgroundColor.subscribe((value) => {
                 root.style.setProperty("--backgroundColor", value);
             });
-            
             FontColor.subscribe((value) => {
                 root.style.setProperty("--fontColor", value);
             });
@@ -81,7 +80,7 @@
                 return;
             }
         }
-        CurrentTimerOpt.set({time: 1, isDefault: true});
+        CurrentTimerOpt.set({time: 15, isDefault: true});
     });
 </script>
 
@@ -96,6 +95,7 @@
     <div class="inner-page">
         <slot />
     </div>
+    <Timer />
 </div>
 
 <style>

@@ -3,11 +3,9 @@
     import "bootstrap-icons/font/bootstrap-icons.css";
     import { onMount } from "svelte";
     import { appWindow } from "@tauri-apps/api/window";
-    import { timer } from "$lib/scripts/timer";
-    import { ColorMode, BackgroundColor, FontColor, Message } from "$lib/scripts/runtime-store";
-    import { GetColorMode, GetBackgroundColor, GetFontColor, GetMessage } from "$lib/scripts/persistent-store";
-
-    timer(60000);
+    import Timer from "$lib/components/Timer.svelte";
+    import { ColorMode, BackgroundColor, FontColor, Message, TimerOpts, CurrentTimerOpt } from "$lib/scripts/runtime-store";
+    import { GetColorMode, GetBackgroundColor, GetFontColor, GetMessage, GetTimerOpts } from "$lib/scripts/persistent-store";
 
     onMount(() => {
         // Set color mode to user setting if exists, else system setting.
@@ -64,7 +62,6 @@
             BackgroundColor.subscribe((value) => {
                 root.style.setProperty("--backgroundColor", value);
             });
-            
             FontColor.subscribe((value) => {
                 root.style.setProperty("--fontColor", value);
             });
@@ -73,6 +70,17 @@
 
     GetMessage().then((value) => {
         if (value !== null) Message.set(value as string);
+    });
+
+    GetTimerOpts().then((value) => {
+        if (value !== null) TimerOpts.set(value as TimerOption[]);
+        for (let opt of $TimerOpts) {
+            if (opt.isDefault) {
+                CurrentTimerOpt.set(opt);
+                return;
+            }
+        }
+        CurrentTimerOpt.set({time: 15, isDefault: true});
     });
 </script>
 
@@ -87,6 +95,7 @@
     <div class="inner-page">
         <slot />
     </div>
+    <Timer />
 </div>
 
 <style>

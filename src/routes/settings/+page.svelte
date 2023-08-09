@@ -1,5 +1,6 @@
 <script lang="ts">
     import ColorSelector from "$lib/components/ColorSelector.svelte";
+    import TimerOptsSettings from "$lib/components/TimerOptsSettings.svelte";
     import { ClickOutside } from "$lib/scripts/utils";
     import { ColorMode, BackgroundColor, FontColor, Message } from "$lib/scripts/runtime-store";
     import { SetColorMode, SetBackgroundColor, SetFontColor, SetMessage } from "$lib/scripts/persistent-store";
@@ -42,14 +43,12 @@
 </div>
 <div class="scroller" data-tauri-drag-region>
     <div class="page" data-tauri-drag-region>
-
         <h2>Timer:</h2>
-        <div class="settings-section">
-
+        <div class="settings-section p1">
+            <TimerOptsSettings />
         </div>
-
         <h2>Color Mode:</h2>
-        <div class="settings-section">
+        <div class="settings-section p2">
             <div class="selectHolder">
                 <div class="selector" class:selectorSelected={showColorThemeSelect} role="button" tabindex="0"
                         on:click={() => {showColorThemeSelect = true}}
@@ -103,12 +102,10 @@
                 </div>
             {/if}
         </div>
-
         <h2>Message:</h2>
-        <div class="settings-section">
+        <div class="settings-section p2">
             <input type="text" class="txtInput" bind:value={$Message} />
         </div>
-        
     </div>
 </div>
 
@@ -163,7 +160,15 @@
 
     .settings-section {
         border-left: 1px dashed var(--fontColor);
-        padding: 1.0rem 0 1.0rem 1.0rem;
+        margin-bottom: 1.0rem;
+    }
+
+    .p1 {
+        padding: 0 1.0rem 1.0rem 1.0rem;
+    }
+
+    .p2 {
+        padding: 0.5rem 1.0rem;
     }
 
     .selector {

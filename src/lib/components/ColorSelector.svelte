@@ -8,10 +8,10 @@
 </script>
 
 <div class="row">
+    <input type="text" class="colorInput" data-coloris bind:value={value} placeholder="-">
     <div class="colorShowHolder" style="margin-right:-22px">
         <div class="colorShow" style="background-color:{value};" />
     </div>
-    <input type="text" class="colorInput" data-coloris bind:value={value} placeholder="-">
 </div>
 
 <style>
@@ -22,6 +22,7 @@
 
     .colorShowHolder {
         z-index: 2;
+        margin-left: 0.5rem;
     }
 
     .colorShow {
@@ -34,13 +35,12 @@
     .colorInput {
         border: 1px solid var(--fontColor);
         border-radius: 4px;
-        padding: 0.90rem 1.5rem 0.85rem 1.5rem;
         background-color: var(--textfieldColor);
         font-size: 1.0rem;
-        text-align: center;
         color: var(--fontColor);
-        width: 110px;
-        height: 1.8rem;
+        width: 100px;
+        height: 2.2rem;
+        padding-left: 0.5rem;
         cursor: pointer;
 	    user-select: none;
     }

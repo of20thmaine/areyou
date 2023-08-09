@@ -27,8 +27,10 @@ fn main() {
 }
 
 fn create_system_tray() -> SystemTray {
+	let show_window = CustomMenuItem::new("show_window".to_string(), "Show Window");
 	let quit = CustomMenuItem::new("quit".to_string(), "Quit");
 	let tray_menu = SystemTrayMenu::new()
+		.add_item(show_window)
 		.add_native_item(SystemTrayMenuItem::Separator)
   		.add_item(quit);
 	let tray = SystemTray::new().with_menu(tray_menu);
@@ -38,6 +40,13 @@ fn create_system_tray() -> SystemTray {
 
 fn tray_event_handler(app_handle: &tauri::AppHandle, event: SystemTrayEvent) {
 	match event {
+		SystemTrayEvent::LeftClick {
+				position: _,
+				size: _,
+				..
+			} => {
+				show_window_helper(app_handle);
+			}
 		SystemTrayEvent::DoubleClick {
 				position: _,
 				size: _,
@@ -47,6 +56,9 @@ fn tray_event_handler(app_handle: &tauri::AppHandle, event: SystemTrayEvent) {
 			}
 		SystemTrayEvent::MenuItemClick { id, .. } => {
 			match id.as_str() {
+				"show_window" => {
+					show_window_helper(app_handle);
+				}
 				"quit" => {
 					std::process::exit(0);
 				}

@@ -11,10 +11,11 @@
     // restarts automatically with the new time.
     CurrentTimerOpt.subscribe((value) => {
         if (value) {
-            timer = value.time * 60;
             if (intervalId !== undefined) {
                 clearInterval(intervalId);
             }
+            timer = value.time * 60;
+            timerOn = true;
             intervalId = setInterval(intervalCallback, 1000);
         }
     });

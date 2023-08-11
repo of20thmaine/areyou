@@ -1,6 +1,6 @@
 {
-	"name": "ontasklr",
-	"version": "0.0.1",
+	"name": "are-you",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"tauri": "tauri",

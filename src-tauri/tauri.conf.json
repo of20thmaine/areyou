@@ -7,8 +7,8 @@
     "distDir": "../build"
   },
   "package": {
-    "productName": "ontasklr",
-    "version": "0.1.0"
+    "productName": "Are You",
+    "version": "1.0.0"
   },
   "tauri": {
     "systemTray": {
@@ -48,7 +48,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "Are-You",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -79,7 +79,7 @@
         "height": 240,
         "resizable": true,
         "skipTaskbar": true,
-        "title": "ontasklr",
+        "title": "Are You",
         "width": 600
       }
     ]
